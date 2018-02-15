@@ -4,7 +4,7 @@
 def MostrarNota(notas):
 	if len(notas)>0:
 		for i in range (len(notas)):
-			print notas[i],","
+			print notas[i],",",
 	else:
 		print"cap nota"
 		
@@ -24,12 +24,19 @@ def aprobar(notas):
 		if notas[i]>5:
 			notas[i]=5
 
+def cercar(notas,notaBuscada):
+	posicion=[]
+	for i in range (len(notas)):
+		if notas[i]==notaBuscada:
+			posicion.append(i)
+	return posicion
+
 notas=[]
 
 
 def interrogante():
 	print"Escull una  de les seguents opcions opció"
-	print"	m	Mostra les notes separades per coma segons l'exercici de llistes.  En cas que es cridi aquest comandament al començament, o després d'haver buidat l'array, mostrarà el missatge: 'cap nota'"
+	print"	m	Mostra les notes separades per coma segons l'exercici de llistes."
 	print"	c   Canvia la nota de la posició p per n."
 	print"	a	Afegeix una nova nota al final de a llista."
 	print"	b	Buida les notes de la llista."
@@ -45,12 +52,11 @@ while opcio!="x":
 	if opcio=="m":
 		MostrarNota(notas)
 		print"Que vol fer ?"
-		opcio=(raw_input())
+		
 	
 	if opcio=="a":
 		AfegirNota(notas)
 		print"Que vol fer ?"
-		opcio=(raw_input())
 		
 	if opcio=="c":
 		print"Posicion nota"
@@ -59,9 +65,28 @@ while opcio!="x":
 		n=int(raw_input())
 		camviarNota(notas,p,n)
 		print"Que vol fer ?"
-		opcio=(raw_input())
+		
+		
 	if opcio =="b":
 		eliminar(notas)
 		print"Que vol fer ?"
-		opcio=(raw_input())
+		
+		
+	if opcio == "t":
+		aprobar(notas)
+		print"Que vol fer ?"
+		
+		
+	if opcio == "d":
+		print("Que nota vols cercar")
+		n=int(raw_input())
+		posicion=cercar(notas,n)
+		for i in range (len(posicion)):
+			print "La nota ",n,"esta en la posición",posicion[i]
+		print"Que vol fer ?"
+		
+	if opcio == "?":
+		interrogante()
+		print"Que vol fer ?"
+		
 		
