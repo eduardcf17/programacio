@@ -8,9 +8,12 @@ def AfegirNota(alumnos,nota1,nota2,nota3):
 	alumnos.append(alumno)
 	print"Escriu la nota de la primera avaluació"
 	nota=int(raw_input())
+<<<<<<< HEAD
 	while nota>10 or nota <0:
 		print "Nota erronia torna a posarla"
 		nota=int(raw_input())
+=======
+>>>>>>> 47cb9c5098abc546c319647772a5e3f862ef8aeb
 	nota1.append(nota)
 	print"Escriu la nota de la segona avaluació"
 	nota=int(raw_input())
@@ -18,6 +21,7 @@ def AfegirNota(alumnos,nota1,nota2,nota3):
 	print"Escriu la nota de la tercera avaluació"
 	nota=int(raw_input())
 	nota3.append(nota)
+<<<<<<< HEAD
 	
 def mostrarNota(alumnos,nota1,nota2,nota3):
 	print "Alumnos\t\t1ra\t2na\t3ra\tfinal"
@@ -47,12 +51,15 @@ def ajuda():
 	print"c «nom» «eval» «n» Canvia la nota de l'avaluació aval de l'alumne amb nom nom per n."
 	print"?	Mostra una ajuda amb un resum de les comandes disponibles."
 	print"x	Finalitza l'execució"
+=======
+>>>>>>> 47cb9c5098abc546c319647772a5e3f862ef8aeb
 
 
 alumnos=[]
 notas1=[]
 notas2=[]
 notas3=[]
+<<<<<<< HEAD
 
 ajuda()
 opcio=""
@@ -77,3 +84,5 @@ while opcio!="x":
 
 	
 	
+=======
+>>>>>>> 47cb9c5098abc546c319647772a5e3f862ef8aeb
