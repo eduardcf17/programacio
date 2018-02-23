@@ -21,24 +21,26 @@ operacion=""
 while operacion!="n":
 	print "Que operacion desea hacer: + - / * o N"
 	operacion=(raw_input())
-	if operacion!="+" and operacion!="-"and operacion!="*"and operacion!="/"and operacion!="n":
+	while operacion!="+" and operacion!="-"and operacion!="*"and operacion!="/"and operacion!="n":
 		print "Error"
 		print"introduzaca operacion"	
 		operacion=(raw_input())
-
-	try:
-		print "pon el primer numero"
-		num1=int(raw_input())
-	except ValueError:
-		print "Error es una letra introduce un numero"
-		num1=int(raw_input())	
-	
-	try:
-		print "pon el segundo numero"
-		num2=int(raw_input())
-	except ValueError:
-		print "Error es una letra introduce un numero"
-		num2=int(raw_input())	
+	if operacion=="n":
+		break
+	while True:
+		try:
+			print "pon el primer numero"
+			num1=int(raw_input())
+			break
+		except ValueError:
+			print "Error es una letra introduce un numero"	
+	while True:
+		try:
+			print "pon el segundo numero"
+			num2=int(raw_input())
+			break
+		except ValueError:
+			print "Error es una letra introduce un numero"	
 	
 	if (operacion=="+"):
 		print suma(num1,num2)
@@ -47,11 +49,13 @@ while operacion!="n":
 	if (operacion=="*"):
 		print multi(num1,num2)
 	if (operacion=="/"):
-		try:
-			print div(num1,num2)
-		except ZeroDivisionError:
-			nprint "Error no se puede dividir entre 0"
-			nnum2=int(raw_input())
-			ndiv(num1,num2)
+		while True:
+			try:
+				print div(num1,num2)
+				break
+			except ZeroDivisionError:
+				print "Error no se puede dividir entre 0 introduexi un altre numero"
+				num2=int(raw_input())
+				
 
 	
