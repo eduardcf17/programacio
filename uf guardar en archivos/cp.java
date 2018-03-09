@@ -1,53 +1,53 @@
 /*
- * sense títol.java
+ * copia archivos
  * 
  *
  * 
  */
+import java.io.*;
 
-import java.io.*; 
-public class cp {
-	public static void copiar(String ruta,String ruta2)throws IOException {
-		File archivo = new File(ruta);
-		
-		for (int i=0;true;i++){
-			
-			
-			
-			
-			
+class cp {
+   public static void main(String [] arg) {
+      File archivo = null;
+      FileWriter fichero = null;
+      PrintWriter pw = null;
+      BufferedReader br = null;
+      File archivoCopia = null;
+      System.out.println("entrando");
+      try {
+         // Apertura del fichero y creacion de BufferedReader para poder
+         // hacer una lectura comoda (disponer del metodo readLine()).
+         archivo = new File ("/home/cf17eduard.corral/Documents/prueba.txt");
+         archivoCopia = new File ("/home/cf17eduard.corral/Documents/prueba1.txt");
+         br = new BufferedReader(new FileReader (archivo));
+         pw = new PrintWriter(new FileWriter (archivoCopia));
+         
+
+         // Lectura del fichero
+         String linea;
+         while((linea=br.readLine())!=null){
+            pw.println(linea);
+			System.out.println(linea);
 			}
-		
-		
-		
-		}
-		
-public static void EscribirFichero (String ruta)throws IOException {
-	File archivo = new File(ruta);
-	BufferedWriter bw;
-	if(archivo.exists()) {
-		bw = new BufferedWriter(new FileWriter(archivo));
-		bw.write("El fichero de texto ya estaba creado.");
-	} else {
-		bw = new BufferedWriter(new FileWriter(archivo));
-		bw.write("Acabo de crear el fichero de texto.");
-	}
-	bw.close();
-}
-
-
-
-
-
-	public static void main(String[] args) throws IOException {
-		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		String ruta = "/home/cf17eduard.corral/Documents/prueba1.txt";
-		String ruta1 = "/home/cf17eduard.corral/Documents/prueba.txt";
-		EscribirFichero(ruta,ruta1);
-
-		
-		
-		
-	}
+            
+      }
+      catch(Exception e){
+         e.printStackTrace();
+      }finally{
+         // En el finally cerramos el fichero, para asegurarnos
+         // que se cierra tanto si todo va bien como si salta 
+         // una excepcion.
+         try{                    
+            if( null != pw && null!=br  ){   
+               br.close();     
+               pw.close();     
+               
+            }                  
+         }catch (Exception e2){ 
+            e2.printStackTrace();
+         }
+      }
+     
+   }
 }
 
