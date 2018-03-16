@@ -1,23 +1,6 @@
 /*
  * funcionesLeer.java
  * 
- * Copyright 2018 edu <edu@edu-HP-Pavilion-15-Notebook-PC>
- * 
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
- * MA 02110-1301, USA.
- * 
  * 
  */
 import java.io.*;
@@ -62,13 +45,52 @@ public class funcionesLeer{
          }
 	   }
 	
+	
+	public static void escribirArchivo(String ruta,int cuantasLineas,BufferedReader reader)throws IOException{
+		FileWriter fichero = null;
+        PrintWriter pw = null;
+		try{
+		fichero = new FileWriter(ruta);
+		pw = new PrintWriter(fichero);
+		for (int i = 0; i < cuantasLineas; i++){
+			System.out.println("Escribe texto de linea "+i);
+			String texto;
+			texto=reader.readLine();
+			pw.println( texto +" Numero de linea: "+i);
+		}
+		} catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+           try {
+           // Nuevamente aprovechamos el finally para 
+           // asegurarnos que se cierra el fichero.
+           if (null != fichero)
+              fichero.close();
+           } catch (Exception e2) {
+              e2.printStackTrace();
+           }
+		}
+	}
 	public static void main (String args[])throws IOException {
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		String ruta;
 		BufferedReader br = null;
 		ruta=pedirRuta();
 		br=abrirArchivo(ruta);
 		leerArchivo(br);
 		cerrarArchivo(br);
+		int cuantasLineas;
+		cuantasLineas=0;
+		try{
+			System.out.println("Escribe el numero de lineas");
+			String texto;
+			texto=reader.readLine();
+			cuantasLineas = Integer.parseInt(texto);
+			}
+		catch(Exception e4) {
+            e4.printStackTrace();
+        }
+		escribirArchivo(ruta,cuantasLineas,reader);
 		
 	}
 }
