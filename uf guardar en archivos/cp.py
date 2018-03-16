@@ -3,17 +3,22 @@
 #
 # 
 
-def cp(archivo):
+def cp(archivo,archivoCopia):
+	lineas=archivo.read()
+	numeroLineas=lineas.split("\n")
+	archivo.seek(0,0)
 	try:
-		while True:
-			nuevo=archivo.readline()
+		for i in range(0,len(numeroLineas),1):
+			LineaCopiar=archivo.readline()
+			archivoCopia.write(LineaCopiar)
 	except:
 		print "error"
-		
+	archivo.close()
+	archivoCopia.close()
+	
 
 
+archivo=open("/home/edu/Documentos/programacio/uf guardar en archivos/prueba","r")
+archivoCopia=open("/home/edu/Documentos/programacio/uf guardar en archivos/pruebaCopia","a");
 
-archivo=open("/home/cf17eduard.corral/Documents/prueba.txt")
-print"Introduce el numero"
-numero=int(raw_input())
-head(numero,archivo)
+cp(archivo,archivoCopia)
