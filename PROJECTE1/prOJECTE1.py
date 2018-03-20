@@ -3,9 +3,12 @@
 #
 # 
 print "Escriu la ruta del arxiu"
-raw
-csv=open("/home/cf17eduard.corral/Documents/PROGRAMACIO GIT/PROJECTE1/rd_e_gerdtot.tsv","r")
-html=open("/home/cf17eduard.corral/Documents/PROGRAMACIO GIT/PROJECTE1/resultat.html","w")
+ruta=(raw_input())
+rutaHtml=ruta+"/resultat.html"
+ruta=ruta+".tsv"
+
+csv=open(ruta,"r")
+html=open(rutaHtml,"w")
 
 def palabra(palabras):
 	for palabra in palabras:
