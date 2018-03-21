@@ -38,17 +38,15 @@ public class sense títol {
 	   }
 	
 	
-	public static void escribirArchivo(String ruta,int cuantasLineas,BufferedReader reader)throws IOException{
+	public static void escribirArchivo(String ruta,BufferedReader reader)throws IOException{
 		FileWriter fichero = null;
         PrintWriter pw = null;
 		try{
 		fichero = new FileWriter(ruta);
 		pw = new PrintWriter(fichero);
-		for (int i = 0; i < cuantasLineas; i++){
-			System.out.println("Escribe texto de linea "+i);
-			String texto;
-			texto=reader.readLine();
-			pw.println( texto +" Numero de linea: "+i);
+		
+		pw.println( texto +" Numero de linea: "+i);
+			
 		}
 		} catch (Exception e) {
             e.printStackTrace();
@@ -64,7 +62,11 @@ public class sense títol {
 		}
 	}
 	
-	public static void main (String args[]) {
+	public static void main (String args[])throws IOException {
+	BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+	System.out.println("Escribe el nombre del archivo");
+	String nombre;
+	nombre=reader.readLine();
 		
 	}
 }
