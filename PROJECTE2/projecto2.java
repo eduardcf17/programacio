@@ -2,9 +2,10 @@
  * projecto2.java
  * 
  */
+import java.io.*;
 
-
-public class sense títol {
+public class projecto2 {
+	
 	public static BufferedReader abrirArchivo(String ruta){
      File archivo = null;
      BufferedReader br = null;
@@ -38,50 +39,37 @@ public class sense títol {
 	   }
 	
 	
-	public static void escribirArchivo(String ruta,BufferedReader reader)throws IOException{
-		FileWriter fichero = null;
-        PrintWriter pw = null;
-		try{
-		fichero = new FileWriter(ruta);
-		pw = new PrintWriter(fichero);
-		
-		pw.println( texto +" Numero de linea: "+i);
-			
-		}
-		} catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-           try {
-           // Nuevamente aprovechamos el finally para 
-           // asegurarnos que se cierra el fichero.
-           if (null != fichero)
-              fichero.close();
-           } catch (Exception e2) {
-              e2.printStackTrace();
-           }
-		}
-	}
 	
 	public static void main (String args[])throws IOException {
 	BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 	System.out.println("Escribe el nombre del archivo");
 	String nombre;
 	nombre=reader.readLine();
+	BufferedReader br;
+	br=null;
+	br=abrirArchivo(nombre);
+
+	BufferedWriter bw = null;
+	
+	FileWriter fw = new FileWriter(nombre);
+	bw = new BufferedWriter(fw);
+
+	bw.write("SET AUTOCOMMIT=1;");
+	bw.write("CREATE DATABASE IF NOT EXISTS projecto2 charset latin1;");
+	bw.write("USE projecto2;");
+	bw.write("CREATE TABLE IF NOT EXISTS project.TABLA (");
+	String linea;
+	
+	linea=br.readLine();
+	String [] valor=linea.split();
+	
+	bw.println(valor[1]+" VARCHAR(20),");
+	
+	
+	
 		
 	}
 }
 
 
 
-
-
-
-
-
-SET AUTOCOMMIT=1;
-
-CREATE DATABASE IF NOT EXISTS sanitat charset latin1;
-
-USE sanitat;
-
-CREATE TABLE IF NOT EXISTS sanitat.HOSPITAL (
