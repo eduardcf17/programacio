@@ -61,13 +61,14 @@ public class projecto2 {
 	String linea;
 	
 	linea=br.readLine();
-	String [] valor=linea.split();
-	
-	bw.println(valor[1]+" VARCHAR(20),");
-	
-	
-	
-		
+	String [] valor=linea.split("/t");
+	int i;
+	int maximo;
+	maximo=length(valor);
+	for (i=0;i<maximo;i++){
+		bw.write(valor[i]+" VARCHAR(20),");
+		}
+	bw.write("/n");
 	}
 }
 
