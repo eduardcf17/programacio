@@ -21,11 +21,13 @@ public class projecto2 {
       }
     
     
-    public static void leerArchivo(BufferedReader br)throws IOException{
+    public static String leerArchivo(BufferedReader br)throws IOException{
 		String linea;
          while((linea=br.readLine())!=null){
 			System.out.println(linea);
+			return linea;
 			}
+		return "";
 		}
 	
    public static void cerrarArchivo(BufferedReader br){
@@ -41,35 +43,50 @@ public class projecto2 {
 	
 	
 	public static void main (String args[])throws IOException {
-	BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-	System.out.println("Escribe el nombre del archivo");
-	String nombre;
-	nombre=reader.readLine();
-	BufferedReader br;
-	br=null;
-	br=abrirArchivo(nombre);
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		String nombre;
+		BufferedReader br;
+		br=null;
+		while (true){
+			try{
+				System.out.println("Escribe el nombre del archivo");
+				nombre=reader.readLine();
+				File archivo = null;
+				try {
+					// Apertura del fichero y creacion de BufferedReader para poder
+					// hacer una lectura comoda (disponer del metodo readLine()).
+					archivo = new File (nombre);
+					br = new BufferedReader(new FileReader (archivo));
+				}catch (IOException ex) {
+					System.out.println(ex);
+				}
+				break;
+		}catch (IOException ex) {
+            System.out.println(ex);
+            }
+         }
+		BufferedWriter bw = null;
+		pw = new PrintWriter(new FileWriter (archivo));
 
-	BufferedWriter bw = null;
-	
-	FileWriter fw = new FileWriter(nombre);
-	bw = new BufferedWriter(fw);
-
-	bw.write("SET AUTOCOMMIT=1;");
-	bw.write("CREATE DATABASE IF NOT EXISTS projecto2 charset latin1;");
-	bw.write("USE projecto2;");
-	bw.write("CREATE TABLE IF NOT EXISTS project.TABLA (");
-	String linea;
-	
-	linea=br.readLine();
-	String [] valor=linea.split("/t");
-	int i;
-	int maximo;
-	maximo=length(valor);
-	for (i=0;i<maximo;i++){
-		bw.write(valor[i]+" VARCHAR(20),");
+		pw.write("SET AUTOCOMMIT=1;");
+		pw.write("CREATE DATABASE IF NOT EXISTS projecto2 charset latin1;");
+		bw.write("USE projecto2;");
+		bw.write("CREATE TABLE IF NOT EXISTS project.TABLA (");
+		String linea;
+		linea=leerArchivo(br);
+		String [] valor=linea.split("\t");
+		int i;
+		int maximo;
+		maximo=valor.length;
+		for (i=0;i<maximo;i++){
+			bw.write(valor[i]+" VARCHAR(20),");
+			}
+		bw.write("\n");
+		bw.close();
+		fw.close();
+		cerrarArchivo(br);
+		
 		}
-	bw.write("/n");
-	}
 }
 
 

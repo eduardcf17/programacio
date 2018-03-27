@@ -1,0 +1,1 @@
+2018-03-21 00:53:42.532057 Iniciando registro de errores\n2018-03-21 00:53:42.533685 Finaliza el programa\n
