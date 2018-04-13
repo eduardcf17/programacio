@@ -84,7 +84,8 @@ public class funcionesLeer{
 		try{
 			System.out.println("Escribe el numero de lineas");
 			String texto;
-			texto=reader.readLine();
+			texto=reader.readLine
+			();
 			cuantasLineas = Integer.parseInt(texto);
 			}
 		catch(Exception e4) {
